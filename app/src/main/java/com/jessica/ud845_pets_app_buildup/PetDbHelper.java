@@ -13,9 +13,12 @@ public class PetDbHelper extends SQLiteOpenHelper{
 
     // If you change the database schema, you must increment the database version.
     private static final int DATABASE_VERSION = 1;
+    final private Context mContext;
 
     public PetDbHelper(Context context) {
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.mContext = context;
     }
 
     @Override
@@ -44,7 +47,12 @@ public class PetDbHelper extends SQLiteOpenHelper{
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + PetContract.PetEntry.TABLE_NAME);
+        onCreate(db);
+    }
 
+    void deleteDatabase() {
+        mContext.deleteDatabase(DATABASE_NAME);
     }
 }
