@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">ud845-Pets-App-Buildup</string>
+    <string name="app_name">Pets</string>
+
+    <string name="hint_pet_name">Name</string>
+    <string name="hint_pet_breed">Breed</string>
+    <string name="hint_pet_age">Age</string>
+    <string name="button_insert_data">Insert Data</string>
 </resources>

@@ -9,7 +9,7 @@ public class PetContract {
 
     public static final class PetEntry implements BaseColumns {
 
-        // constants to define table and columns
+        // Add constants to define table and columns
         public final static String TABLE_NAME = "pets";
         public final static String _ID = BaseColumns._ID;
         public final static String COLUMN_PET_TYPE = "type";
@@ -26,17 +26,10 @@ public class PetContract {
 
         public final static String[] TABLE_COLUMNS = {
                 _ID ,
-                COLUMN_PET_TYPE ,
                 COLUMN_PET_NAME ,
-                COLUMN_PET_GENDER ,
                 COLUMN_PET_AGE ,
                 COLUMN_PET_BREED ,
-                COLUMN_PET_HEIGHT ,
-                COLUMN_PET_WEIGHT ,
-                COLUMN_IMAGE_PATH ,
-                COLUMN_STERILIZATION_STATUS ,
-                COLUMN_ADDITIONAL_NOTES ,
-                COLUMN_ADOPTION_STATUS};
+                };
     }
 
 }

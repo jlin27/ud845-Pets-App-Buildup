@@ -10,8 +10,37 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.jessica.ud845_pets_app_buildup.MainActivity">
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:id="@+id/edit_pet_name"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:hint = "@string/hint_pet_name"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_pet_breed"
+        android:layout_below="@+id/edit_pet_name"
+        android:layout_centerHorizontal="true"
+        android:hint = "@string/hint_pet_breed"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_pet_age"
+        android:layout_below="@+id/edit_pet_breed"
+        android:inputType="number"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/hint_pet_age"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_insert_data"
+        android:id="@+id/button_insert_data"
+        android:layout_below="@+id/edit_pet_age"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"/>
 </RelativeLayout>
