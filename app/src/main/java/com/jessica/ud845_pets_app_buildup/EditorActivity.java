@@ -79,7 +79,11 @@ public class EditorActivity extends AppCompatActivity {
          * there are no values).
          */
         long newRowId = mDatabase.insert(PetContract.PetEntry.TABLE_NAME,null,values);
-        Toast.makeText(this, "Added Pet to row: " + newRowId , Toast.LENGTH_SHORT).show();
+        if(newRowId != -1)
+            Toast.makeText(this, "New row added, row id: " + newRowId, Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "Something wrong", Toast.LENGTH_SHORT).show();
+
 
 
     }
