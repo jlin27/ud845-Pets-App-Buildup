@@ -2,6 +2,13 @@
 <manifest package="com.jessica.ud845_pets_app_buildup"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <provider
+        android:name=".data.PetProvider"
+        android:authorities="com.jessica.ud845_pets_app_buildup"
+        android:exported="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
