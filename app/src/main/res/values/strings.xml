@@ -5,4 +5,7 @@
     <string name="hint_pet_breed">Breed</string>
     <string name="hint_pet_age">Age</string>
     <string name="button_insert_data">Insert Data</string>
+    <string name="title_activity_catalog">CatalogActivity</string>
+    <string name="title_activity_editor">Edit Pet Info</string>
+
 </resources>

@@ -1,0 +1,12 @@
+<resources>
+
+    <style name="AppTheme.NoActionBar">
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+            <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+            <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <color name="colorPrimary_Red">#f0514b</color>
+    <color name="colorPrimaryDark_Red">#C0403C</color>
+</resources>
