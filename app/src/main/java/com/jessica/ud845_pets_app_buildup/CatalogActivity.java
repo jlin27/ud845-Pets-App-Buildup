@@ -9,12 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.CursorAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class CatalogActivity extends AppCompatActivity {
 
-    SQLiteDatabase mDatabase;
-    private String entryWhereClause;
+    private SQLiteDatabase mDatabase;
+    private CursorAdapter mCursorAdapter;
+    private ListView mMainListView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +27,6 @@ public class CatalogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_catalog);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Log.v(CatalogActivity.class.getName(),"in create");
 
         // Setup FAB to open EditorActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -63,42 +66,26 @@ public class CatalogActivity extends AppCompatActivity {
                 null);                                    // limit
 
 
-        // Get the TextView which will be populated with the Pet Table data
-        TextView petTextView = (TextView) findViewById(R.id.text_view_pet);
+        // Get the ListView which will be populated with the Pet Table data
+        ListView petListView = (ListView) findViewById(R.id.catalog_list_view);
 
+            // Specify which columns from the Cursor you want to use in the layout
+            String[] data_from = {PetContract.PetEntry.COLUMN_PET_NAME, PetContract.PetEntry.COLUMN_PET_AGE};
+            // Specify the views you want to populate with the data from data_from
+            int[] data_to = {android.R.id.text1, android.R.id.text2};
 
-        try {
-            petTextView.setText("The Pet Table contains " + cursor.getCount() + " pets\n");
-            petTextView.append("COLUMNS: " + PetContract.PetEntry._ID + " - " +
-                    PetContract.PetEntry.COLUMN_PET_NAME + " - " +
-                    PetContract.PetEntry.COLUMN_PET_AGE + " - " +
-                    PetContract.PetEntry.COLUMN_PET_BREED + "\n");
+            // Set the Adapter to fill the standard two_line_list_item layout with data from the Cursor.
+            SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+                    android.R.layout.two_line_list_item,
+                    cursor,
+                    data_from,
+                    data_to,
+                    0);
 
+            Log.v(CatalogActivity.class.getName(),"before settingAdapter");
 
-            int nameColumn = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_NAME);
-            int ageColumn = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_AGE);
-            int breedColumn = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_BREED);
-
-            // Iterates through all the returned rows in the cursor
-            while (cursor.moveToNext()) {
-                // Use that index to extract the String value of the word
-                // at the current row the cursor is on.
-
-                String currentName = cursor.getString(nameColumn);
-                int currentAge = cursor.getInt(ageColumn);
-                String currentBreed = cursor.getString(breedColumn);
-
-                petTextView.append(("\n" + currentName + " - " + currentBreed + " - " + currentAge));
-
-                Log.v(CatalogActivity.class.getName(),"in the while loop");
-
-            }
-        }
-        finally{
-            // Always close your cursor to avoid memory leaks
-            cursor.close();
-            Log.v(CatalogActivity.class.getName(),"closed");
-        }
+            // Attach the adapter to the ListView.
+            petListView.setAdapter(adapter);
 
     }
 
